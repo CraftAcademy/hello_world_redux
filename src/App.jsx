@@ -1,18 +1,20 @@
 import React from 'react';
 import { Input, Button, Container, Header } from 'semantic-ui-react'
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
-const App = (props) => {
+const App = () => {
+  const dispatch = useDispatch()
+  const state = useSelector(state => state)
   return (
     <Container>
-      <Header as='h1'>{props.state.greeting}</Header>
+      <Header as='h1'>{state.greeting}</Header>
       <Input
         placeholder='New greeting...'
-        onBlur={(event) => props.dispatch({ type: 'PROPOSE_GREETING', greeting: event.target.value })}
+        onBlur={(event) => dispatch({ type: 'PROPOSE_GREETING', greeting: event.target.value })}
       />
       <Button
         primary
-        onClick={() => props.dispatch({ type: 'CHANGE_GREETING' })}
+        onClick={() => dispatch({ type: 'CHANGE_GREETING' })}
       >
         Change greeting
         </Button>
@@ -20,10 +22,6 @@ const App = (props) => {
   );
 }
 
-const mapStateToProps = (state) => {
-  return {
-    state: state
-  }
-}
 
-export default connect(mapStateToProps)(App);
+
+export default App;
