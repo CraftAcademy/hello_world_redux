@@ -11,7 +11,6 @@ jest.mock('react-redux', () => ({
 }))
 
 describe('<App />', () => {
-
   const mockDispatch = jest.fn()
   const mockStore = configureStore([])
 
@@ -38,6 +37,12 @@ describe('<App />', () => {
     expect(mockDispatch).toHaveBeenCalledWith({
       greeting: 'Hello',
       type: 'PROPOSE_GREETING',
+    })
+  })
+  it('calls CHANGE_GREETING', () => {
+    subject.find('button').simulate('click')
+    expect(mockDispatch).toHaveBeenCalledWith({
+      type: 'CHANGE_GREETING',
     })
   })
 })
