@@ -1,37 +1,23 @@
-
-// import React, { Component } from 'react';
-// import { connect } from 'react-redux'
-// import { Container, Header } from 'semantic-ui-react'
-
-// class App extends Component {
-
-//   render() {
-//     return (
-//       <Container>
-//         <Header as='h1'>{this.props.greeting}</Header>
-//       </Container>
-//     );
-//   }
-// }
-
-// const mapStateToProps = state => {
-//   return {
-//     greeting: state.greeting
-//   }
-// }
-
-// export default connect(mapStateToProps)(App);
-
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { Container, Header } from 'semantic-ui-react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { getCurrentPostion } from './modules/location'
+
 
 const App = () => {
-  // let [greeting, setGreeting] = useState('Hello world from a hooked state')
-  let state = useSelector(state => state)
+  let greeting = useSelector(state => state.greeting)
+  let country = useSelector(state => state.location.country)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    getCurrentPostion(dispatch)
+    debugger
+  }, [])
+
   return (
     <Container>
-      <Header as='h1'>{state.greeting}</Header>
+      <p data-cy="current-location" >You are in {country}!</p>
+      <Header as='h1'>{greeting}</Header>
     </Container>
   );
 }
