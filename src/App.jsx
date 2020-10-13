@@ -1,13 +1,11 @@
 import React from 'react';
 import { Container, Header } from 'semantic-ui-react'
 
-const App = () => { 
+const App = () => {
   return (
-    <>
-      <Container>
-        <Header as='h1'>Hello World</Header>
-      </Container>
-    </>
+    <Container>
+      <Header as='h1'>Hello World</Header>
+    </Container>
   );
 }
 
