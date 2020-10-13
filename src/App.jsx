@@ -1,19 +1,26 @@
 
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 import { Container, Header } from 'semantic-ui-react'
 
 class App extends Component {
 
   render() {
     return (
-    <Container>
-      <Header as='h1'></Header>
-    </Container>
+      <Container>
+        <Header as='h1'>{this.props.greeting}</Header>
+      </Container>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    greeting: state.greeting
+  }
+}
+
+export default connect(mapStateToProps)(App);
 
 // import React, { useState } from 'react';
 // import { Container, Header } from 'semantic-ui-react'
